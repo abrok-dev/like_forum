@@ -1,0 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'lux.css';
+@import './components/_toast.css';
+@import 'custom.css';
+
