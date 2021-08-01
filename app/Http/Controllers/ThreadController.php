@@ -17,7 +17,7 @@ class ThreadController extends Controller
 {
     //
 
-    public function show()
+    public function show(string $slug)
     {
 
     }
@@ -32,23 +32,39 @@ class ThreadController extends Controller
 
     }
 
-    public function lock()
+    public function lock(Request $request, int $id)
     {
-
+        $thread = Thread::find($id);
+        $thread->lock = true;
+        $thread->save();
+        $request->session()->flash('flash' , ['type'=>'success' , 
+        'title'=>'thread' , 'message' => 'locked']);
     }
-    public function unlock()
+    public function unlock(Request $request, int $id)
     {
-        
+        $thread = Thread::find($id);
+        $thread->lock = false;
+        $thread->save();
+        $request->session()->flash('flash' , ['type'=>'success' , 
+        'title'=>'thread' , 'message' => 'unlocked']);
     }
 
-    public function pin()
+    public function pin(Request $request, int $id)
     {
-        
+        $thread = Thread::find($id);
+        $thread->pin = true;
+        $thread->save();
+        $request->session()->flash('flash' , ['type'=>'success' , 
+        'title'=>'thread' , 'message' => 'pined']);
     }
 
 
-    public function unpin()
+    public function unpin(Request $request, int $id)
     {
-        
+        $thread = Thread::find($id);
+        $thread->pin = false;
+        $thread->save();
+        $request->session()->flash('flash' , ['type'=>'success' , 
+        'title'=>'thread' , 'message' => 'unpined']);
     }
 }

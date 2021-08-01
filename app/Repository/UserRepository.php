@@ -6,7 +6,7 @@ class UserRepository
 {
     public function findOnlineUsers()
     {
-        DB::table('users')
+      return  DB::table('users')
         ->where('lastActivityAt' , '>', time()-600 )
         ->select('*')
         ->get();
@@ -14,17 +14,23 @@ class UserRepository
 
     public function countOnlineUsers()
     {
-        DB::table('users')
+      return  DB::table('users')
         ->where('lastActivityAt' , '>', time()-600 )
         ->count();
     } 
     
     public function findLastRegistered()
     {
-        DB::table('users')
+     return   DB::table('users')
         ->orderByDesc('createdAt')
         ->limit(1)
         ->select('*')
+        ->get();
+    }
+    public function findByRole(string $role)
+    {
+        return DB::table('users')
+        ->where('roles->ROLE_MODERATOR' ,'=' ,true)
         ->get();
     }
 

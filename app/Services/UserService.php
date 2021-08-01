@@ -6,11 +6,15 @@ use App\Models\User;
 class UserService
 {
 
-    public function __construct(private ThreadService $threadService,
-    private MessageService $messageService ,
-    private ReportService $reportService)
+    private ThreadService $threadService;
+    private MessageService $messageService ;
+    private ReportService $reportService;
+    public function __construct(
+    )
     {
-        
+        $this->threadService = new ThreadService();
+        $this->messageService = new MessageService();
+        $this->reportService = new ReportService();
     }
 
     public function deleteUser(User $user , bool $deleteContent = false)

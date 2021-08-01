@@ -20,7 +20,7 @@ class MessageRepository
 
     public function findMessagesByThread(Thread $thread , bool $onlyId=false)
     {
-        DB::table('messages')
+     return   DB::table('messages')
         ->join('message_likes', function (JoinClause $join )use ($thread){
             $join->on('message_id' ,'=' , 'messages.id')
             ->where('thread_id' , '=' , $thread->id);

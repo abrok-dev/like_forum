@@ -28,7 +28,7 @@ class UserController extends Controller
         $user = User::find(
             DB::table('users')
             ->where('slug','=',$slug)
-            ->select('id')->get);
+            ->select('id')->get() );
         return view('user.profile',['user'=>$user , 
       'lastMessages'=>  $this->messageRepository->findLastMessageByUser($user , 5),
       'lastThreads'=> $this->threadRepository->findLastThreadsByUser($user , 5)
@@ -40,7 +40,7 @@ class UserController extends Controller
         $user = User::find(
             DB::table('users')
             ->where('slug','=',$slug)
-            ->select('id')->get);
+            ->select('id')->get() );
             $page = $request->get('page',1);
 
             $paginate = $user->threads->forPage($page , 25);

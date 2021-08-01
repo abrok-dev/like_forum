@@ -10,11 +10,12 @@ use App\Repository\MessageRepository;
 
 class ThreadService
 {
-
-    public function __construct(private MessageRepository $messageRepository ,
-        private AntispamService $antispamService)
+    private AntispamService $antispamService;
+    private MessageRepository $messageRepository;
+    public function __construct()
     {
-    
+        $this->antispamService = new AntispamService();
+        $this->messageRepository = new MessageRepository();
     }
 
     public function canPostThread(Forum $forum , User $user)

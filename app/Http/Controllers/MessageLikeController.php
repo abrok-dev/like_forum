@@ -14,6 +14,9 @@ class MessageLikeController extends Controller
 
     public function like(int $id)
     {
-        
+        $message= Message::find($id);
+        $likeService = new MessageLikeService();
+        $likeService->likeMessage($message);
+        return json_encode(['likes'=> $message->likes->count()]);
     }
 }

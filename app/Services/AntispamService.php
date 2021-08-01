@@ -13,12 +13,13 @@ class AntispamService
     private const DELAY_MESSAGE = 60;
 
     private const DELAY_THREAD = 90;
-
-    public function __construct(private ThreadRepository
-     $threadRepository , 
-     private MessageRepository $messageRepository)
+    private ThreadRepository $threadRepository;
+    private MessageRepository $messageRepository;
+    public function __construct( 
+     )
     {
-        
+        $this->threadRepository = new ThreadRepository();
+        $this->messageRepository = new MessageRepository();
     }
     
     public function canPostThread(User $user)

@@ -19,12 +19,12 @@ class MessageService
      * 
      *  */ 
     
-    
-    
-    public function __construct(private MessageRepostory $messageRepostory
-  ,  private AntispamService $antispamService  )
+  //  private MessageRepostory $messageRepostory;
+    private AntispamService $antispamService ;
+    public function __construct( )
     {
-        
+    //    $this->messageRepostory = new MessageRepository();
+        $this->antispamService = new AntispamService();
     }
 
     public function canPostMessage(Thread $thread , User $user)
